@@ -269,7 +269,7 @@ app.get('/check',loginCheck,(req, res) => {
 // all other page - redirect to login
 
 
-
+app.use(formidable());
 //shop API 
 //create API for shop
 //curl -X POST -F "shop_no=321" -F "name=Trinkey Trove" -F "type=shop" -F "address=119" -F "open_time=08:00" -F "close_time=23:00" -F "status=closed" -F "phone=44444444" localhost:3000/api/shops/321
@@ -462,7 +462,7 @@ app.put('/api/claim/:claimId', async (req,res) => {
 //delete api for claim
 //curl -X DELETE localhost:3000/api/claim/321
 app.delete('/api/claim/:claimId', async (req,res) => {
-    if (req.params.shop_no) {
+    if (req.params.claimId) {
 		console.log(req.body)
         const type = "claimId";
         const collectionName = "claimData"
@@ -485,7 +485,7 @@ app.get('/*',(req,res) =>{
 
 //End of claim API
 
-app.use(formidable());
+
 const server = app.listen(process.env.PORT || 3000, () => { 
     const port = server.address().port;
     console.log(`localhost:${port}`); 
