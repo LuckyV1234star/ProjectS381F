@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ShopCss.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="/graphics/logo2.svg" alt="Logo">
+            <span class="title">Homantin Plaza</span>
+        </div>
+        <div class="user-info">
+            <span class="user-name" id="user-name">Customer Service System　|</span>
+            <span class="user-name" id="user-name"><%= name %></span>
+            <button class="logout-button" onclick="location.href='/logout'">LOG OUT</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="/check">MALL NEWS</a>
+            <p></p>
+            <a href="/shop" class="active">SHOP INFORMATION</a>
+            <p></p>
+            <a href="/claim">CLAIM/REPORT LOST</a>
+            <p></p>
+            <a href="/lostlist" >LOST LIST</a>
+        </div>
+        <div class="main-content">
+    
+            <div class="table-container">
+                <div class="outer-container">
+                    <form action="/shop" method="post">
+                        <div class="search-container">
+                            <span class="search-title">SHOP INFORMATION</span>
+                            <input type="text" id="search-input" class="search-input" name="search_input" placeholder="Search by Shop No" >
+                            <button class="search-button"  type="submit">ENTER</button>
+                            </form>
+                        </div>
+                    <button class="uploadshop-button" onclick="location.href='/shopUpload'">UPLOAD SHOP +</button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SHOP NO.</th>
+                            <th>NAME</th> <!-- 元氣/大快活 -->
+                            <th>TYPE</th>  <!-- Food/Shop -->
+                            <th>ADDRESS</th>   <!--鋪位 -->
+                            <th>OPEN TIME</th>
+                            <th>CLOSE TIME</th>
+                            <th>STATUS</th> <!-- 開左鋪未 OPEN/CLOSE-->
+                            <th>PHONE</th> <!-- 2345 6789-->
+                            <th>ACTIONS</th> 
+                            
+                        </tr>
+
+                    </thead>
+                    <tbody id="shop_data">
+                        <!-- Data will be inserted here -->
+                         <%shop_obj_array.sort((a, b) => {
+                            const shop_noA = a.shop_no; 
+                            const shop_noB = b.shop_no; 
+                            if (shop_noA < shop_noB) {
+                              return -1;
+                            }
+                            if (shop_noA > shop_noB) {
+                              return 1;
+                            }
+                            return 0; 
+                          }); %>
+                        <% for(let i=0; i < shop_obj_array.length; i++) {%>
+                            <tr>
+                              <td><%= shop_obj_array[i].shop_no %></td>
+                              <td><%= shop_obj_array[i].name%></td>
+                              <td><%= shop_obj_array[i].type%></td>
+                              <td><%= shop_obj_array[i].address%></td> 
+                              <td><%= shop_obj_array[i].open_time%></td> 
+                              <td><%= shop_obj_array[i].close_time%></td>
+                             
+                              <td><span class="<%- shop_obj_array[i].status.replace(' ','').toLowerCase()%>"><%= shop_obj_array[i].status%></span></td>
+                                 
+                              <td><%= shop_obj_array[i].phone%></td>  
+                              <td>
+                                <div class="actionContainer">
+                                    <button class="delete-button" onclick="location.href='/deleteConfirm?_id=<%= shop_obj_array[i]._id%>&db=shops'">Delete</button>
+                                </div>
+                                
+                                
+                            </td>
+                            </tr>
+                          <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

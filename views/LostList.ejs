@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ShopCss.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="/graphics/logo2.svg" alt="Logo">
+            <span class="title">Homantin Plaza</span>
+        </div>
+        <div class="user-info">
+            <span class="user-name" id="user-name">Customer Service System　|</span>
+            <span class="user-name" id="user-name"><%= name %></span>
+            <button class="logout-button" onclick="location.href='/logout'">LOG OUT</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="/check">MALL NEWS</a>
+            <p></p>
+            <a href="/shop" >SHOP INFORMATION</a>
+            <p></p>
+            <a href="/claim">CLAIM/REPORT LOST</a>
+            <p></p>
+            <a href="/lostlist" class="active">LOST LIST</a>
+        </div>
+        <div class="main-content">
+            <div class="table-container">
+                <form action="/lostlist" method="post">
+                    <div class="search-container">
+                        <span class="search-title">LOST LIST</span>
+                        <input type="text" id="search-input" class="search-input" name="search_input" placeholder="Search by item" >
+                        <button class="search-button"  type="submit">ENTER</button>
+                       
+                    </div>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER Contact Information</th> 
+                            <th>ITEM</th>  
+                            <th>LOST TIME</th>  
+                            <th>LOST PLACE</th>
+                            <th>ITEM DETAILS</th>
+                            <th>ACTIONS</th>   
+                        </tr>
+
+                    </thead>
+                    <tbody id="lost_item_data">
+                        <!-- Data will be inserted here -->
+                        <% for(let i=0; i < lost_obj_array.length; i++) {%>
+                            <tr>
+                              <td><%=  lost_obj_array[i].customer_name %></td>
+                              <td><%=  lost_obj_array[i].contact_info%></td>
+                              <td><%=  lost_obj_array[i].item%></td>
+                              <td><%=  lost_obj_array[i].lost_time%></td> 
+                              <td><%=  lost_obj_array[i].lost_place%></td> 
+                              <td><%=  lost_obj_array[i].item_details%></td>
+                              <td>
+                                <div class="actionContainer">
+                                    <img class="editimg" src="/graphics/edit.png" alt="Edit" onclick="location.href='/updateForm?_id=<%= lost_obj_array[i]._id%>'">
+                                    <button class="delete-button" onclick="location.href='/deleteConfirm?_id=<%= lost_obj_array[i]._id%>&db=lostItemData'">Delete</button>
+                                </div>
+                                
+                                
+                            </td>
+                            </tr>
+                          <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

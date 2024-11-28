@@ -1,0 +1,27 @@
+{
+    "name": "shop-manage-api",
+    "version": "1.0.0",
+    "description": "A simple API for managing a plaza using Express and MongoDB.",
+    "main": "server.js",
+    "type": "commonjs",
+    "scripts": {
+        "start": "node server"
+    },
+    "author": "Group",
+    "dependencies": {
+        "body-parser": "*",
+        "cookie-session": "^2.1.0",
+        "ejs": "*",
+        "express": "*",
+        "express-session": "*",
+        "express-formidable": "*",
+        "mongodb": "*",
+        "mongoose": "*",
+        "path": "*"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "keywords": [],
+    "license": "ISC"
+}

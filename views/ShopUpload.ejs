@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Lost</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ReportiostCss.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="/graphics/logo2.svg" alt="Logo">
+            <span class="title">Homantin Plaza</span>
+        </div>
+        <div class="user-info">
+            <span class="user-name" id="user-name">Customer Service System　|</span>
+            <span class="user-name" id="user-name"><%= name %></span>
+            <button class="logout-button" onclick="location.href='/logout'">LOG OUT</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="/check">MALL NEWS</a>
+            <p></p>
+            <a href="/shop">SHOP INFORMATION</a>
+            <p></p>
+            <a href="/claim">CLAIM/REPORT LOST</a>
+            <p></p>
+            <a href="/lostlist" >LOST LIST</a>
+        </div>
+        
+        <div class="main-content">
+            <form action="/shopUpload" method="post">
+            <div class="form-container">
+                <img src="/graphics/x.png" class="icon" onclick="location.href='/shop'" alt="Icon">
+                <h2>Upload</h2>
+                <div class="form-group">
+                    <label for="shop_no">Shop No. *</label>
+                    <input type="text" id="shop_no" name="shop_no">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="type">Type *</label>
+                    <input type="text" id="type" name="type">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" name="address">
+                </div>
+                <div class="form-group">
+                    <label for="open_time">Open Time (xx:xx)*</label>
+                    <input type="text" id="open_time" name="open_time">
+                </div>
+                <div class="form-group">
+                    <label for="close_time">Close Time (xx:xx)*</label>
+                    <input type="text" id="close_time" name="close_time">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status (open/closed)*</label>
+                    <input type="text" id="status" name="status">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone *</label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <button class="upload-button" type="submit">Update</button>
+            </div>
+            </form>
+        </div>
+    </form>
+    </div>
+
+
+</body>
+</html>
